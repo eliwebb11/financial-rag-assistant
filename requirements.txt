@@ -1,0 +1,25 @@
+# Core LlamaIndex
+llama-index==0.12.6
+llama-index-core==0.14.18
+llama-index-vector-stores-chroma==0.5.5
+llama-index-embeddings-huggingface==0.7.0
+llama-index-llms-anthropic==0.11.1
+
+# Vector store
+chromadb==0.6.3
+
+# MCP server
+mcp==1.5.0
+
+# Anthropic SDK
+anthropic==0.85.0
+
+# SEC data fetching
+requests==2.32.3
+beautifulsoup4==4.13.3
+
+# Streamlit UI
+streamlit==1.44.0
+
+# Utilities
+python-dotenv==1.1.0
