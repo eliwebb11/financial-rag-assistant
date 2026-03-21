@@ -138,10 +138,10 @@ with st.sidebar:
             for ticker in available_tickers:
                 st.markdown(f"- **{ticker}**")
         else:
-            st.info("No companies added yet. Use the add companies tab to add companies.")
-    except Exception as e:
-        st.error(f"Could not load companies: {e}")
+            st.warning("No companies added yet. Go to the **Add Company** tab to get started.")
+    except Exception:
         available_tickers = []
+        st.warning("No companies added yet. Go to the **Add Company** tab to get started.")
 
     st.divider()
 
