@@ -134,18 +134,12 @@ with st.sidebar:
 
     st.divider()
 
-    # Available companies
+# Available companies
     st.subheader("Available Companies")
     try:
         available_tickers = get_available_tickers()
-        if available_tickers:
-            for ticker in available_tickers:
-                st.markdown(f"- **{ticker}**")
-        else:
-            st.warning("No companies added yet. Go to the **Add Company** tab to get started.")
     except Exception:
         available_tickers = []
-        st.warning("No companies added yet. Go to the **Add Company** tab to get started.")
 
     if available_tickers:
         for ticker in available_tickers:
@@ -154,14 +148,17 @@ with st.sidebar:
                 if ticker_dir.exists():
                     files = list(ticker_dir.iterdir())
                     for f in sorted(files):
-                        # Extract form type and date from filename
                         parts = f.stem.split("_")
                         if len(parts) >= 3:
                             form = parts[1]
                             date = parts[2]
-                            st.caption(f"{form} — {date}")
+                            st.caption(f"📄 {form} — {date}")
                         else:
-                            st.caption(f"{f.name}")
+                            st.caption(f"📄 {f.name}")
+                else:
+                    st.caption("No files found locally.")
+    else:
+        st.warning("No companies added yet. Go to the **Add Company** tab to get started.")
 
     st.divider()
 
