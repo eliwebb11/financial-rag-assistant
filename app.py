@@ -152,9 +152,9 @@ with st.sidebar:
                         if len(parts) >= 3:
                             form = parts[1]
                             date = parts[2]
-                            st.caption(f"📄 {form} — {date}")
+                            st.caption(f"{form} — {date}")
                         else:
-                            st.caption(f"📄 {f.name}")
+                            st.caption(f"{f.name}")
                 else:
                     st.caption("No files found locally.")
     else:
