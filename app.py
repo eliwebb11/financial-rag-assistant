@@ -1,5 +1,6 @@
 import os
 import streamlit as st
+from pathlib import Path
 from dotenv import load_dotenv
 
 from rag.query_engine import query, compare_companies
@@ -46,6 +47,9 @@ st.markdown("""
     }
     [data-testid="stSidebarCollapseButton"] {
         display: none;
+    }
+    [data-testid="stAlert"] p {
+    font-size: 0.82em;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -130,17 +134,30 @@ with st.sidebar:
 
     st.divider()
 
-    # Available companies
+# Available companies
     st.subheader("Available Companies")
     try:
         available_tickers = get_available_tickers()
-        if available_tickers:
-            for ticker in available_tickers:
-                st.markdown(f"- **{ticker}**")
-        else:
-            st.warning("No companies added yet. Go to the **Add Company** tab to get started.")
     except Exception:
         available_tickers = []
+
+    if available_tickers:
+        for ticker in available_tickers:
+            with st.expander(f"**{ticker}**"):
+                ticker_dir = Path(f"data/raw/{ticker}")
+                if ticker_dir.exists():
+                    files = list(ticker_dir.iterdir())
+                    for f in sorted(files):
+                        parts = f.stem.split("_")
+                        if len(parts) >= 3:
+                            form = parts[1]
+                            date = parts[2]
+                            st.caption(f"{form} — {date}")
+                        else:
+                            st.caption(f"{f.name}")
+                else:
+                    st.caption("No files found locally.")
+    else:
         st.warning("No companies added yet. Go to the **Add Company** tab to get started.")
 
     st.divider()
@@ -417,7 +434,7 @@ with tab_ingest:
                     chunk_count = ingest_ticker(new_ticker)
                     progress.empty()
                     status.success(
-                        f"✅ {new_ticker} added successfully! "
+                        f"{new_ticker} added successfully! "
                         f"{chunk_count} chunks indexed. "
                         f"Refresh the page to see it in the company list."
                     )
