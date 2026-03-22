@@ -47,6 +47,9 @@ st.markdown("""
     [data-testid="stSidebarCollapseButton"] {
         display: none;
     }
+    [data-testid="stAlert"] p {
+    font-size: 0.82em;
+    }
 </style>
 """, unsafe_allow_html=True)
 
