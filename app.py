@@ -148,20 +148,20 @@ with st.sidebar:
         st.warning("No companies added yet. Go to the **Add Company** tab to get started.")
 
     if available_tickers:
-    for ticker in available_tickers:
-        with st.expander(f"**{ticker}**"):
-            ticker_dir = Path(f"data/raw/{ticker}")
-            if ticker_dir.exists():
-                files = list(ticker_dir.iterdir())
-                for f in sorted(files):
-                    # Extract form type and date from filename
-                    parts = f.stem.split("_")
-                    if len(parts) >= 3:
-                        form = parts[1]
-                        date = parts[2]
-                        st.caption(f"{form} — {date}")
-                    else:
-                        st.caption(f"{f.name}")
+        for ticker in available_tickers:
+            with st.expander(f"**{ticker}**"):
+                ticker_dir = Path(f"data/raw/{ticker}")
+                if ticker_dir.exists():
+                    files = list(ticker_dir.iterdir())
+                    for f in sorted(files):
+                        # Extract form type and date from filename
+                        parts = f.stem.split("_")
+                        if len(parts) >= 3:
+                            form = parts[1]
+                            date = parts[2]
+                            st.caption(f"{form} — {date}")
+                        else:
+                            st.caption(f"{f.name}")
 
     st.divider()
 
