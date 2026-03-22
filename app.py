@@ -434,7 +434,7 @@ with tab_ingest:
                     chunk_count = ingest_ticker(new_ticker)
                     progress.empty()
                     status.success(
-                        f"✅ {new_ticker} added successfully! "
+                        f"{new_ticker} added successfully! "
                         f"{chunk_count} chunks indexed. "
                         f"Refresh the page to see it in the company list."
                     )
