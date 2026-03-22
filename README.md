@@ -155,4 +155,4 @@ financial-rag-assistant/
 
 **Eli Webb** — BS Computer Science, Oklahoma State University
 
-[GitHub](https://github.com/eliwebb11) · [LinkedIn](https://linkedin.com/in/your-profile)
+[GitHub](https://github.com/eliwebb11) · [LinkedIn](https://www.linkedin.com/in/eli-webb1/)
